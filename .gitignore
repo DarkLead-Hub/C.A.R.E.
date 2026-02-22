@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Test files
+test-ipfs.js
+test-proxy.js
+
+# Figma/Make platform files
+guidelines/
+ATTRIBUTIONS.md
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+*.swp
+*.swo
+
+# Environment
+.env
+.env.local
