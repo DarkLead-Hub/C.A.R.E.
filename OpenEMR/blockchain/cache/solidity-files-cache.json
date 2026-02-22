@@ -1,0 +1,41 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "C:\\Users\\muham\\OneDrive\\Desktop\\Hackathon\\openemr\\blockchain\\contracts\\MedicalEcosystem.sol": {
+      "lastModificationDate": 1771714347342,
+      "contentHash": "ed3812a7babf1ac11bd543bc4b04238e",
+      "sourceName": "contracts/MedicalEcosystem.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.24"
+      ],
+      "artifacts": [
+        "MedicalEcosystem"
+      ]
+    }
+  }
+}
