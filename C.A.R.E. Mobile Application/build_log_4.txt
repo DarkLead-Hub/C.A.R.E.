@@ -1,0 +1,32 @@
+Running build hooks...Running build hooks...  0s freezed on 319 inputs; lib/app/app.dart
+  0s freezed on 319 inputs: 1 skipped; lib/app/view/app.dart
+  17s freezed on 319 inputs: 17 skipped, 1 no-op; spent 14s analyzing, 3s resolving; lib/core/navigation/observers/order_route_observer.dart
+  18s freezed on 319 inputs: 138 skipped, 5 output, 13 no-op; spent 15s analyzing, 3s resolving; lib/features/records/presentation/widgets/record_attachments/bloc/record_attachments_event.dart
+  18s freezed on 319 inputs: 289 skipped, 7 output, 1 same, 22 no-op; spent 15s analyzing, 3s resolving
+  0s json_serializable on 638 inputs; lib/app/app.dart
+  1s json_serializable on 638 inputs: 1 no-op; lib/app/app.freezed.dart
+  2s json_serializable on 638 inputs: 550 skipped, 65 no-op; spent 2s analyzing; lib/main.freezed.dart
+  3s json_serializable on 638 inputs: 572 skipped, 66 no-op; spent 2s analyzing
+  0s envied_generator:envied on 638 inputs; lib/app/app.dart
+  0s envied_generator:envied on 638 inputs: 601 skipped, 37 no-op
+  0s drift_dev on 2552 inputs; lib/app/app.dart
+  0s drift_dev on 2552 inputs: 572 skipped, 7 output, 60 same; lib/app/app.freezed.dart
+  1s drift_dev on 2552 inputs: 2361 skipped, 7 output, 111 same, 73 no-op
+  0s source_gen:combining_builder on 1276 inputs; lib/app/app.dart
+  0s source_gen:combining_builder on 1276 inputs: 1269 skipped, 7 no-op
+  0s mockito:mockBuilder on 88 inputs; test/drift/my_database/generated/schema.dart
+  1s mockito:mockBuilder on 88 inputs: 80 skipped, 1 no-op; test/widget_test.dart.types.temp.dart
+  1s mockito:mockBuilder on 88 inputs: 87 skipped, 1 no-op
+  0s injectable_generator:injectable_builder on 2640 inputs; lib/app/app.dart
+  1s injectable_generator:injectable_builder on 2640 inputs: 2103 skipped, 9 same, 49 no-op; lib/features/sync/presentation/widgets/sync_placeholder_widget.dart.types.temp.dart
+  1s injectable_generator:injectable_builder on 2640 inputs: 2574 skipped, 9 same, 57 no-op
+  0s injectable_generator:injectable_config_builder on 2640 inputs; lib/app/app.dart
+  0s injectable_generator:injectable_config_builder on 2640 inputs: 2603 skipped, 37 no-op
+  0s flutter_gen_runner on 1 input; $package$
+  0s flutter_gen_runner on 1 input: 1 skipped
+  0s auto_route_generator on 7923 inputs; lib/app/app.config.dart
+  1s auto_route_generator on 7923 inputs: 7890 skipped, 12 same, 21 no-op
+  0s auto_route_generator:auto_router_generator on 7923 inputs; lib/app/app.config.dart
+  0s auto_route_generator:auto_router_generator on 7923 inputs: 409 skipped, 1 same; lib/core/navigation/app_router.dart.types.temp.config.dart
+  0s auto_route_generator:auto_router_generator on 7923 inputs: 7901 skipped, 1 same, 21 no-op
+  Built with build_runner/jit in 28s; wrote 148 outputs.

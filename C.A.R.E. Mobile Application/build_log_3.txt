@@ -1,0 +1,80 @@
+Running build hooks...Running build hooks...  0s freezed on 319 inputs; lib/app/app.dart
+  0s freezed on 319 inputs: 1 skipped; lib/app/view/app.dart
+  17s freezed on 319 inputs: 17 skipped, 1 no-op; spent 14s analyzing, 3s resolving; lib/core/navigation/observers/order_route_observer.dart
+E freezed on lib/features/scan/presentation/bloc/scan_bloc.dart:
+  Classes using extends/with must define a MyClass._() constructor.
+  package:health_wallet/features/scan/presentation/bloc/scan_event.dart:8:7
+    ╷
+  8 │ class ScanInitialised extends ScanEvent with _$ScanInitialised {
+    │       ^^^^^^^^^^^^^^^
+    ╵
+  18s freezed on 319 inputs: 294 skipped, 3 output, 22 no-op; spent 15s analyzing, 3s resolving
+  0s json_serializable on 638 inputs; lib/app/app.dart
+  1s json_serializable on 638 inputs: 1 no-op; lib/app/app.freezed.dart
+  2s json_serializable on 638 inputs: 564 skipped, 51 no-op; spent 1s analyzing; lib/main.freezed.dart
+  3s json_serializable on 638 inputs: 586 skipped, 52 no-op; spent 2s analyzing
+  0s envied_generator:envied on 638 inputs; lib/app/app.dart
+  0s envied_generator:envied on 638 inputs: 610 skipped, 28 no-op
+  0s drift_dev on 2552 inputs; lib/app/app.dart
+  0s drift_dev on 2552 inputs: 993 skipped, 9 output, 69 same, 3 no-op; lib/features/scan/presentation/pages/preview/bloc/preview_event.dart
+  0s drift_dev on 2552 inputs: 2399 skipped, 9 output, 89 same, 55 no-op
+  0s source_gen:combining_builder on 1276 inputs; lib/app/app.dart
+  0s source_gen:combining_builder on 1276 inputs: 1273 skipped, 3 no-op
+  0s mockito:mockBuilder on 88 inputs; test/drift/my_database/generated/schema.dart
+  1s mockito:mockBuilder on 88 inputs: 80 skipped, 1 no-op; test/widget_test.dart.types.temp.dart
+  1s mockito:mockBuilder on 88 inputs: 87 skipped, 1 no-op
+  0s injectable_generator:injectable_builder on 2640 inputs; lib/app/app.dart
+  1s injectable_generator:injectable_builder on 2640 inputs: 2588 skipped, 6 same, 46 no-op
+  0s injectable_generator:injectable_config_builder on 2640 inputs; lib/app/app.dart
+  0s injectable_generator:injectable_config_builder on 2640 inputs: 2612 skipped, 28 no-op
+  0s flutter_gen_runner on 1 input; $package$
+  0s flutter_gen_runner on 1 input: 1 skipped
+  0s auto_route_generator on 7923 inputs; lib/app/app.config.dart
+  1s auto_route_generator on 7923 inputs: 1393 skipped, 1 same; lib/features/dashboard/presentation/dashboard_page.dart.types.temp.config.dart
+  1s auto_route_generator on 7923 inputs: 7899 skipped, 12 same, 12 no-op
+  0s auto_route_generator:auto_router_generator on 7923 inputs; lib/app/app.config.dart
+  0s auto_route_generator:auto_router_generator on 7923 inputs: 7910 skipped, 1 same, 12 no-op
+E freezed on lib/features/home/presentation/bloc/home_bloc.dart:
+  Classes using extends/with must define a MyClass._() constructor.
+  package:health_wallet/features/home/presentation/bloc/home_event.dart:8:7
+    ╷
+  8 │ class HomeInitialised extends HomeEvent with _$HomeInitialised {
+    │       ^^^^^^^^^^^^^^^
+    ╵
+E freezed on lib/features/notifications/bloc/notification_bloc.dart:
+  Classes using extends/with must define a MyClass._() constructor.
+  package:health_wallet/features/notifications/bloc/notification_event.dart:8:7
+    ╷
+  8 │ class NotificationAdded extends NotificationEvent with _$NotificationAdded {
+    │       ^^^^^^^^^^^^^^^^^
+    ╵
+E freezed on lib/features/onboarding/presentation/bloc/onboarding_bloc.dart:
+  Classes using extends/with must define a MyClass._() constructor.
+  package:health_wallet/features/onboarding/presentation/bloc/onboarding_event.dart:8:7
+    ╷
+  8 │ class OnboardingPageChanged extends OnboardingEvent
+    │       ^^^^^^^^^^^^^^^^^^^^^
+    ╵
+E freezed on lib/features/records/presentation/bloc/records_bloc.dart:
+  Classes using extends/with must define a MyClass._() constructor.
+  package:health_wallet/features/records/presentation/bloc/records_event.dart:6:7
+    ╷
+  6 │ class RecordsInitialised extends RecordsEvent with _$RecordsInitialised {
+    │       ^^^^^^^^^^^^^^^^^^
+    ╵
+E freezed on lib/features/records/presentation/widgets/record_attachments/bloc/record_attachments_bloc.dart:
+  Classes using extends/with must define a MyClass._() constructor.
+  package:health_wallet/features/records/presentation/widgets/record_attachments/bloc/record_attachments_event.dart:8:7
+    ╷
+  8 │ class RecordAttachmentsInitialised extends RecordAttachmentsEvent
+    │       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ╵
+E freezed on lib/features/records/presentation/widgets/record_notes/bloc/record_notes_bloc.dart:
+  Classes using extends/with must define a MyClass._() constructor.
+  package:health_wallet/features/records/presentation/widgets/record_notes/bloc/record_notes_event.dart:8:7
+    ╷
+  8 │ class RecordNotesInitialised extends RecordNotesEvent
+    │       ^^^^^^^^^^^^^^^^^^^^^^
+    ╵
+  Failed to build with build_runner/jit in 26s; wrote 120 outputs.
+Failed to update packages.

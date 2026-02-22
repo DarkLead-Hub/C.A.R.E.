@@ -1,0 +1,116 @@
+Running build hooks...Running build hooks...  0s freezed on 319 inputs; lib/app/app.dart
+  0s freezed on 319 inputs: 1 skipped; lib/app/view/app.dart
+  0s freezed on 319 inputs: 319 skipped
+  0s json_serializable on 638 inputs; lib/app/app.dart
+  0s json_serializable on 638 inputs: 638 skipped
+  0s envied_generator:envied on 638 inputs; lib/app/app.dart
+  0s envied_generator:envied on 638 inputs: 638 skipped
+  0s drift_dev on 2552 inputs; lib/app/app.dart
+  0s drift_dev on 2552 inputs: 2552 skipped
+  0s source_gen:combining_builder on 1276 inputs; lib/app/app.dart
+  0s source_gen:combining_builder on 1276 inputs: 1276 skipped
+  0s mockito:mockBuilder on 88 inputs; test/drift/my_database/generated/schema.dart
+  0s mockito:mockBuilder on 88 inputs: 88 skipped
+  0s injectable_generator:injectable_builder on 2640 inputs; lib/app/app.dart
+  0s injectable_generator:injectable_builder on 2640 inputs: 2640 skipped
+  0s injectable_generator:injectable_config_builder on 2640 inputs; lib/app/app.dart
+  0s injectable_generator:injectable_config_builder on 2640 inputs: 2640 skipped
+  0s flutter_gen_runner on 1 input; $package$
+  0s flutter_gen_runner on 1 input: 1 skipped
+  0s auto_route_generator on 7923 inputs; lib/app/app.config.dart
+  0s auto_route_generator on 7923 inputs: 7923 skipped
+  0s auto_route_generator:auto_router_generator on 7923 inputs; lib/app/app.config.dart
+  0s auto_route_generator:auto_router_generator on 7923 inputs: 7923 skipped
+E freezed on lib/features/home/presentation/bloc/home_bloc.dart:
+  Classes using extends/with must define a MyClass._() constructor.
+  package:health_wallet/features/home/presentation/bloc/home_event.dart:8:7
+    ╷
+  8 │ class HomeInitialised extends HomeEvent with _$HomeInitialised {
+    │       ^^^^^^^^^^^^^^^
+    ╵
+E freezed on lib/features/notifications/bloc/notification_bloc.dart:
+  Classes using extends/with must define a MyClass._() constructor.
+  package:health_wallet/features/notifications/bloc/notification_event.dart:8:7
+    ╷
+  8 │ class NotificationAdded extends NotificationEvent with _$NotificationAdded {
+    │       ^^^^^^^^^^^^^^^^^
+    ╵
+E freezed on lib/features/onboarding/presentation/bloc/onboarding_bloc.dart:
+  Classes using extends/with must define a MyClass._() constructor.
+  package:health_wallet/features/onboarding/presentation/bloc/onboarding_event.dart:8:7
+    ╷
+  8 │ class OnboardingPageChanged extends OnboardingEvent
+    │       ^^^^^^^^^^^^^^^^^^^^^
+    ╵
+E freezed on lib/features/records/presentation/bloc/records_bloc.dart:
+  Classes using extends/with must define a MyClass._() constructor.
+  package:health_wallet/features/records/presentation/bloc/records_event.dart:6:7
+    ╷
+  6 │ class RecordsInitialised extends RecordsEvent with _$RecordsInitialised {
+    │       ^^^^^^^^^^^^^^^^^^
+    ╵
+E freezed on lib/features/records/presentation/widgets/record_attachments/bloc/record_attachments_bloc.dart:
+  Classes using extends/with must define a MyClass._() constructor.
+  package:health_wallet/features/records/presentation/widgets/record_attachments/bloc/record_attachments_event.dart:8:7
+    ╷
+  8 │ class RecordAttachmentsInitialised extends RecordAttachmentsEvent
+    │       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ╵
+E freezed on lib/features/records/presentation/widgets/record_notes/bloc/record_notes_bloc.dart:
+  Classes using extends/with must define a MyClass._() constructor.
+  package:health_wallet/features/records/presentation/widgets/record_notes/bloc/record_notes_event.dart:8:7
+    ╷
+  8 │ class RecordNotesInitialised extends RecordNotesEvent
+    │       ^^^^^^^^^^^^^^^^^^^^^^
+    ╵
+E freezed on lib/features/scan/presentation/bloc/scan_bloc.dart:
+  Classes using extends/with must define a MyClass._() constructor.
+  package:health_wallet/features/scan/presentation/bloc/scan_event.dart:8:7
+    ╷
+  8 │ class ScanInitialised extends ScanEvent with _$ScanInitialised {
+    │       ^^^^^^^^^^^^^^^
+    ╵
+E freezed on lib/features/scan/presentation/pages/load_model/bloc/load_model_bloc.dart:
+  Classes using extends/with must define a MyClass._() constructor.
+  package:health_wallet/features/scan/presentation/pages/load_model/bloc/load_model_event.dart:8:7
+    ╷
+  8 │ class LoadModelInitialized extends LoadModelEvent
+    │       ^^^^^^^^^^^^^^^^^^^^
+    ╵
+E freezed on lib/features/scan/presentation/pages/preview/bloc/preview_bloc.dart:
+  Classes using extends/with must define a MyClass._() constructor.
+  package:health_wallet/features/scan/presentation/pages/preview/bloc/preview_event.dart:8:7
+    ╷
+  8 │ class PreviewPageChanged extends PreviewEvent with _$PreviewPageChanged {
+    │       ^^^^^^^^^^^^^^^^^^
+    ╵
+E freezed on lib/features/scan/presentation/widgets/attach_to_encounter/bloc/attach_to_encounter_bloc.dart:
+  Classes using extends/with must define a MyClass._() constructor.
+  package:health_wallet/features/scan/presentation/widgets/attach_to_encounter/bloc/attach_to_encounter_event.dart:8:7
+    ╷
+  8 │ class AttachToEncounterStarted extends AttachToEncounterEvent
+    │       ^^^^^^^^^^^^^^^^^^^^^^^^
+    ╵
+E freezed on lib/features/sync/presentation/bloc/sync_bloc.dart:
+  Classes using extends/with must define a MyClass._() constructor.
+  package:health_wallet/features/sync/presentation/bloc/sync_event.dart:8:7
+    ╷
+  8 │ class SyncInitialised extends SyncEvent with _$SyncInitialised {
+    │       ^^^^^^^^^^^^^^^
+    ╵
+E freezed on lib/features/user/presentation/bloc/user_bloc.dart:
+  Classes using extends/with must define a MyClass._() constructor.
+  package:health_wallet/features/user/presentation/bloc/user_event.dart:8:7
+    ╷
+  8 │ class UserInitialised extends UserEvent with _$UserInitialised {
+    │       ^^^^^^^^^^^^^^^
+    ╵
+E freezed on lib/features/user/presentation/preferences_modal/sections/patient/bloc/patient_bloc.dart:
+  Classes using extends/with must define a MyClass._() constructor.
+  package:health_wallet/features/user/presentation/preferences_modal/sections/patient/bloc/patient_event.dart:8:7
+    ╷
+  8 │ class PatientInitialised extends PatientEvent with _$PatientInitialised {
+    │       ^^^^^^^^^^^^^^^^^^
+    ╵
+  Failed to build with build_runner/jit in 3s; wrote 0 outputs.
+Failed to update packages.
