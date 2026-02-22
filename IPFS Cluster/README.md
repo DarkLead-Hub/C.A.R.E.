@@ -24,9 +24,7 @@ tar -xvzf kubo_v0.32.0_linux-arm64.tar.gz
 cd kubo && sudo ./install.sh
 
 ipfs init --profile server
-```
 
----
 
 
 Create the service file:
@@ -85,7 +83,7 @@ ingress:
       httpHostHeader: ipfs.snbhowmik.dev
 
   - service: http_status:404
-```
+
 
 ---
 
@@ -122,7 +120,6 @@ sudo systemctl restart ipfs
 Monitoring Services
 sudo systemctl status ipfs
 sudo systemctl status cloudflared
-```
 
 Live logs:
 sudo journalctl -u cloudflared -f
