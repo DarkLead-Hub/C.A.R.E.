@@ -208,7 +208,7 @@ export function useECGProcessor() {
     const leadOffRatio =
       totalSamples > 0 ? leadOffCountRef.current / totalSamples : 0;
     const noiseLevel =
-      signalMax - signalMin > 0
+      signalMax > signalMin
         ? Math.min(100, (signalStdDev / (signalMax - signalMin)) * 100 * 3)
         : 0;
     const signalQuality = Math.max(

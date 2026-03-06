@@ -22,19 +22,18 @@ export default defineConfig({
   server: {
     proxy: {
       '/api/v0': {
-        target: 'http://10.211.171.140:5001',
+        target: 'https://ipfs-api.snbhowmik.dev',
         changeOrigin: true,
-        secure: false,
+        secure: true,
         headers: {
-          // IPFS checks origin/host headers and throws 403 if they don't match the API host whitelist
-          'Origin': 'http://10.211.171.140:5001',
-          'Host': '10.211.171.140:5001'
+          'Origin': 'https://ipfs-api.snbhowmik.dev',
+          'Host': 'ipfs-api.snbhowmik.dev'
         }
       },
       '/ipfs': {
-        target: 'http://10.211.171.140:8080',
+        target: 'https://ipfs-gateway.snbhowmik.dev',
         changeOrigin: true,
-        secure: false,
+        secure: true,
       },
     },
   },

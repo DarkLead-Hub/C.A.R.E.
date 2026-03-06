@@ -1,0 +1,20 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model PatientDataKey {
+  id             String   @id @default(cuid())
+  walletAddress  String   // Blockchain address of the patient
+  ipfsCid        String   // CID of the encrypted file on IPFS
+  aesKeyHex      String   // Encrypted AES key or raw Hex (depending on security needs, raw for this demo)
+  dataType       String   // "ECG_CSV" or "PDF_REPORT"
+  createdAt      DateTime @default(now())
+
+  // Ensure one unique CID + wallet mapping (though one CID could theoretically be mapped to many if shared)
+  @@unique([walletAddress, ipfsCid])
+  @@index([walletAddress])
+}

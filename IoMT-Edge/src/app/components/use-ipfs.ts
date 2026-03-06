@@ -1,6 +1,15 @@
 import { useState, useCallback, useRef, useEffect } from "react";
 import type { ECGDataPoint } from "./use-serial";
 
+// Ganache wallet addresses for patient selection
+const GANACHE_PATIENTS: { name: string; wallet: string }[] = [
+    { name: "Patient A", wallet: "0x27CBc2C8d76b435dE587502b637806Be98171553" },
+    { name: "Patient B", wallet: "0xbc27b202d9235886e25A875D23B734F5Bca20b4C" },
+];
+
+// Patient Portal Key DB URL
+const KEY_DB_URL = "http://localhost:3001/api/keys";
+
 export interface PatientFolder {
     Name: string;
     Type: number; // 0 = file, 1 = directory
@@ -16,63 +25,32 @@ export interface UploadResult {
 }
 
 export function useIPFS() {
-    const [patients, setPatients] = useState<string[]>([]);
+    const [patients, setPatients] = useState<string[]>(
+        GANACHE_PATIENTS.map((p) => `${p.name} (${p.wallet.slice(0, 6)}...${p.wallet.slice(-4)})`)
+    );
     const [selectedPatient, setSelectedPatient] = useState<string | null>(null);
     const [isLoadingPatients, setIsLoadingPatients] = useState(false);
     const [isUploading, setIsUploading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [uploadResult, setUploadResult] = useState<UploadResult | null>(null);
 
-    const fetchPatients = useCallback(async () => {
-        setIsLoadingPatients(true);
-        setError(null);
-
-        try {
-            const response = await fetch(
-                "/api/v0/files/ls?arg=/openemr/patients&long=true",
-                { method: "POST" }
-            );
-
-            if (!response.ok) {
-                if (response.status === 500) {
-                    // Directory might not exist yet
-                    throw new Error("Patient directory not found. Ensure /openemr/patients exists on the IPFS node.");
-                }
-                throw new Error(`Failed to list patients: ${response.status}`);
-            }
-
-            const data = await response.json();
-            const entries: PatientFolder[] = data.Entries || [];
-
-            // Only show directories (Type === 1) — IPFS uses PascalCase
-            const folders = entries
-                .filter((e) => e.Type === 1)
-                .map((e) => e.Name)
-                .sort();
-
-            setPatients(folders);
-
-            // If previously selected patient no longer exists, clear selection
-            if (selectedPatient && !folders.includes(selectedPatient)) {
-                setSelectedPatient(null);
-            }
-        } catch (err: any) {
-            console.error("Failed to fetch patients from IPFS:", err);
-            setError(err.message || "Failed to fetch patients");
-            setPatients([]);
-        } finally {
-            setIsLoadingPatients(false);
-        }
+    // Get the wallet address for the currently selected patient
+    const getSelectedWallet = useCallback((): string | null => {
+        if (!selectedPatient) return null;
+        const patient = GANACHE_PATIENTS.find(
+            (p) => `${p.name} (${p.wallet.slice(0, 6)}...${p.wallet.slice(-4)})` === selectedPatient
+        );
+        return patient?.wallet || null;
     }, [selectedPatient]);
 
-    // Fetch patients on mount
-    const didFetchRef = useRef(false);
-    useEffect(() => {
-        if (!didFetchRef.current) {
-            didFetchRef.current = true;
-            fetchPatients();
-        }
-    }, [fetchPatients]);
+    const fetchPatients = useCallback(async () => {
+        // Patients are loaded from the hardcoded Ganache accounts
+        setIsLoadingPatients(true);
+        setPatients(
+            GANACHE_PATIENTS.map((p) => `${p.name} (${p.wallet.slice(0, 6)}...${p.wallet.slice(-4)})`)
+        );
+        setIsLoadingPatients(false);
+    }, []);
 
     const uploadECG = useCallback(
         async (data: ECGDataPoint[]): Promise<UploadResult> => {
@@ -93,15 +71,49 @@ export function useIPFS() {
                 .toISOString()
                 .replace(/[:.]/g, "-")
                 .slice(0, 19);
-            const fileName = `ecg_${timestamp}.json`;
-            const mfsPath = `/openemr/patients/${selectedPatient}/${fileName}`;
+            const fileName = `ecg_${timestamp}.csv.enc`;
+            const walletAddr = getSelectedWallet();
+            const mfsPath = `/openemr/patients/${walletAddr}/${fileName}`;
 
             try {
-                // Use /files/write to write directly into MFS (shows in Web UI)
+                // 1. Buffer to CSV
+                const csvRows = ['timestamp,value,leadOff'];
+                for (const point of data) {
+                    csvRows.push(`${point.timestamp},${point.value},${point.leadOff}`);
+                }
+                const csvString = csvRows.join('\n');
+
+                // 2. Generate AES-256 Key
+                const key = await window.crypto.subtle.generateKey(
+                    { name: 'AES-GCM', length: 256 },
+                    true,
+                    ['encrypt', 'decrypt']
+                );
+
+                // 3. Encrypt the CSV
+                const iv = window.crypto.getRandomValues(new Uint8Array(12));
+                const encoder = new TextEncoder();
+                const encodedData = encoder.encode(csvString);
+                const encryptedBuffer = await window.crypto.subtle.encrypt(
+                    { name: 'AES-GCM', iv },
+                    key,
+                    encodedData
+                );
+
+                // Prepend IV to encrypted data
+                const encryptedDataArray = new Uint8Array(encryptedBuffer);
+                const combinedData = new Uint8Array(iv.length + encryptedDataArray.length);
+                combinedData.set(iv);
+                combinedData.set(encryptedDataArray, iv.length);
+
+                const blob = new Blob([combinedData], { type: 'application/octet-stream' });
+
+                // Export key for database storage
+                const exportedKey = await window.crypto.subtle.exportKey('raw', key);
+                const keyHex = Array.from(new Uint8Array(exportedKey)).map(b => b.toString(16).padStart(2, '0')).join('');
+
+                // 4. Upload to IPFS MFS
                 const formData = new FormData();
-                const blob = new Blob([JSON.stringify(data, null, 2)], {
-                    type: "application/json",
-                });
                 formData.append("file", blob, fileName);
 
                 const writeUrl = `/api/v0/files/write?arg=${encodeURIComponent(mfsPath)}&create=true&parents=true&truncate=true`;
@@ -140,6 +152,31 @@ export function useIPFS() {
                 };
 
                 console.log("IPFS Upload successful:", mfsPath, cid ? `CID: ${cid}` : "");
+                console.log("Generated AES Key (Hex):", keyHex);
+
+                // 5. Register the encryption key in the Patient Portal Key DB
+                if (cid) {
+                    try {
+                        const keyDbRes = await fetch(KEY_DB_URL, {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({
+                                walletAddress: walletAddr || selectedPatient,
+                                ipfsCid: cid,
+                                aesKeyHex: keyHex,
+                                dataType: "ECG_CSV",
+                            }),
+                        });
+                        if (keyDbRes.ok) {
+                            console.log("Key registered in Patient Portal DB");
+                        } else {
+                            console.warn("Key registration failed:", await keyDbRes.text());
+                        }
+                    } catch (keyErr) {
+                        console.warn("Could not reach Patient Portal Key DB:", keyErr);
+                    }
+                }
+
                 setUploadResult(result);
                 return result;
             } catch (err: any) {
@@ -155,7 +192,7 @@ export function useIPFS() {
                 setIsUploading(false);
             }
         },
-        [selectedPatient]
+        [selectedPatient, getSelectedWallet]
     );
 
     const clearUploadResult = useCallback(() => {

@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@prisma/client": "^7.4.2",
+    "ethers": "^6.16.0",
+    "sqlite3": "^5.1.7"
+  }
+}
